@@ -1,9 +1,0 @@
-
-[environment]
-env: local
-
-[local]
-USER: api
-PASSWORD: 123
-DATABASE: animals
-HOST:
