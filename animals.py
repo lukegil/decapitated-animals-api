@@ -5,13 +5,11 @@ from flask import Flask, jsonify, request, abort, g
 from utils.connector import Connect
 from rate_limit import ratelimit
 from redis import Redis
-redis = Redis()
-
 
 app = Flask(__name__)
 config = ConfigParser.ConfigParser()
 
-config.read("config/mysql.conf")
+config.read("/var/www/flaskapi/animals_api/config/mysql.conf")
 env = config.get("environment","env")
 app.config.update(
     db = {
@@ -22,7 +20,7 @@ app.config.update(
         }
     )
 
-config.read("config/server.conf")
+config.read("/var/www/flaskapi/animals_api/config/server.conf")
 app.config.update(SECRET_KEY=config.get("server", "SECRET_KEY"))
 
 
