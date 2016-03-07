@@ -14,9 +14,7 @@ class Connect(object):
     def request(self, query, params):
         """returns a dictionary of results"""
         cursor = self.cnx.cursor(dictionary=True)
-        
         cursor.execute(query, params)
-        print cursor._executed
         return cursor.fetchall()
     
     def get_record(self, id):
@@ -41,8 +39,7 @@ class Connect(object):
         query = "{verb} incidents SET {fields} ".format(verb=phrase, fields=set_phrase)
         if phrase == "UPDATE":
             query += "WHERE incident_id = %s"
-        logging.debug("db query : {}".format(query))
-        
+                
         params = r_json.values()
         if id:
             params.append(id)
