@@ -51,7 +51,7 @@ def parse_object(db_response):
 
 
 @app.before_request
-@ratelimit(limit=2, per=60 * 1)
+@ratelimit(limit=100, per=600 * 1)
 def authenticate_and_connect():
     if request.method != "GET":
         if request.get_json().get("secret", "") != app.config["SECRET_KEY"]:
